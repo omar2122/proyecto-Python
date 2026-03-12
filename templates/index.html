@@ -14,8 +14,21 @@
 </form>
 
 {% if clima %}
+
+<h2>{{ clima.ciudad }}</h2>
+
+<img src="https://openweathermap.org/img/wn/{{ clima.icon }}@2x.png">
+
 <p>Temperatura: {{ clima.temp }} °C</p>
+<p>Sensación térmica: {{ clima.feels_like }} °C</p>
+<p>Temperatura mínima: {{ clima.temp_min }} °C</p>
+<p>Temperatura máxima: {{ clima.temp_max }} °C</p>
+<p>Humedad: {{ clima.humidity }} %</p>
+<p>Viento: {{ clima.wind }} Km/h</p>
+
 <p>Clima: {{ clima.desc }}</p>
+<p>ID clima: {{ clima.weather_id }}</p>
+
 {% endif %}
 
 </body>

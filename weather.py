@@ -19,8 +19,16 @@ def index():
 
         if respuesta.get("cod") == 200:
             clima = {
+                "ciudad": respuesta["name"],
                 "temp": respuesta["main"]["temp"],
-                "desc": respuesta["weather"][0]["description"]
+                "feels_like": respuesta["main"]["feels_like"],
+                "temp_min": respuesta["main"]["temp_min"],
+                "temp_max": respuesta["main"]["temp_max"],
+                "humidity": respuesta["main"]["humidity"],
+                "wind": respuesta["wind"]["speed"],
+                "desc": respuesta["weather"][0]["description"],
+                "weather_id": respuesta["weather"][0]["id"],
+                "icon": respuesta["weather"][0]["icon"]
             }
 
     return render_template("index.html", clima=clima)
