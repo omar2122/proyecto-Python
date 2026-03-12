@@ -2,34 +2,46 @@
 <html>
 <head>
 <title>Clima</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<h2>Consulta el clima</h2>
+    <header>
+        <h2>CONSULTA EL CLIMA</h2>
+    </header>
 
-<form method="POST">
-<input name="ciudad" placeholder="Ciudad">
-<button type="submit">Consultar</button>
-</form>
+    <div id="input">
+        <form method="POST">
+        <input id="inputText" name="ciudad" placeholder="Introduce una ciudad...">
+        </br>
+        <button id="button" type="submit">CONSULTAR</button>
+        </form>
+    </div>
 
-{% if clima %}
+    <div id="resultado">
+        {% if clima %}
 
-<h2>{{ clima.ciudad }}</h2>
+        <h3>{{ clima.ciudad }}</h3>
 
-<img src="https://openweathermap.org/img/wn/{{ clima.icon }}@2x.png">
+        <img src="https://openweathermap.org/img/wn/{{ clima.icon }}@2x.png">
 
-<p>Temperatura: {{ clima.temp }} °C</p>
-<p>Sensación térmica: {{ clima.feels_like }} °C</p>
-<p>Temperatura mínima: {{ clima.temp_min }} °C</p>
-<p>Temperatura máxima: {{ clima.temp_max }} °C</p>
-<p>Humedad: {{ clima.humidity }} %</p>
-<p>Viento: {{ clima.wind }} Km/h</p>
+        <p>Temperatura: {{ clima.temp }} °C</p>
+        <p>Sensación térmica: {{ clima.feels_like }} °C</p>
+        <p>Temperatura mínima: {{ clima.temp_min }} °C</p>
+        <p>Temperatura máxima: {{ clima.temp_max }} °C</p>
+        <p>Humedad: {{ clima.humidity }} %</p>
+        <p>Viento: {{ clima.wind }} Km/h</p>
 
-<p>Clima: {{ clima.desc }}</p>
-<p>ID clima: {{ clima.weather_id }}</p>
+        <p>Clima: {{ clima.desc }}</p>
+        <!-- <p>ID clima: {{ clima.weather_id }}</p> -->
 
-{% endif %}
+        {% endif %}
+    </div>
 
 </body>
 </html>

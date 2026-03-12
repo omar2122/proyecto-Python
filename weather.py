@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import requests
+import math
 
 app = Flask(__name__)
 
@@ -20,12 +21,12 @@ def index():
         if respuesta.get("cod") == 200:
             clima = {
                 "ciudad": respuesta["name"],
-                "temp": respuesta["main"]["temp"],
-                "feels_like": respuesta["main"]["feels_like"],
-                "temp_min": respuesta["main"]["temp_min"],
-                "temp_max": respuesta["main"]["temp_max"],
+                "temp": round(respuesta["main"]["temp"]),
+                "feels_like": round(respuesta["main"]["feels_like"]),
+                "temp_min": math.floor(respuesta["main"]["temp_min"]),
+                "temp_max": math.ceil(respuesta["main"]["temp_max"]),
                 "humidity": respuesta["main"]["humidity"],
-                "wind": respuesta["wind"]["speed"],
+                "wind": round(respuesta["wind"]["speed"]),
                 "desc": respuesta["weather"][0]["description"],
                 "weather_id": respuesta["weather"][0]["id"],
                 "icon": respuesta["weather"][0]["icon"]
