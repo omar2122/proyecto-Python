@@ -73,3 +73,19 @@ h2 {
     font-size: 26px;
     color: #2B2B2B;
 }
+
+.clima-principal{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.temperatura {
+    font-size: 120px;
+    font-weight: 600;
+}
+
+.icono {
+    width: 300px;
+}
+

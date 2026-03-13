@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Clima</title>
+    <title>Clima</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 </head>
 
@@ -17,20 +18,27 @@
 
     <div id="input">
         <form method="POST">
-        <input id="inputText" name="ciudad" placeholder="Introduce una ciudad...">
-        </br>
-        <button id="button" type="submit">CONSULTAR</button>
+            <input id="inputText" name="ciudad" placeholder="Introduce una ciudad...">
+            </br>
+            <button id="button" type="submit">CONSULTAR</button>
         </form>
     </div>
 
     <div id="resultado">
         {% if clima %}
 
-        <h3>{{ clima.ciudad }}</h3>
+        <h1>{{ clima.ciudad }}</h1>
 
-        <img src="https://openweathermap.org/img/wn/{{ clima.icon }}@2x.png">
+        <div class="clima-principal">
 
-        <p>Temperatura: {{ clima.temp }} °C</p>
+            <img class="icono" src="https://openweathermap.org/img/wn/{{ clima.icon }}@2x.png">
+
+            <h1 class="temperatura">
+                {{ clima.temp }}°
+            </h1>
+
+        </div>
+        
         <p>Sensación térmica: {{ clima.feels_like }} °C</p>
         <p>Temperatura mínima: {{ clima.temp_min }} °C</p>
         <p>Temperatura máxima: {{ clima.temp_max }} °C</p>
@@ -44,4 +52,5 @@
     </div>
 
 </body>
+
 </html>
