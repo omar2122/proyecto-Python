@@ -9,6 +9,9 @@ api_key = "ac215244e0eced8937d362007a6935a8"
 @app.route("/", methods=["GET","POST"])
 def index():
     clima = None
+    traducciones = {}
+
+    
     
     if request.method == "POST":
         ciudad = request.form["ciudad"]
@@ -19,6 +22,20 @@ def index():
         print(respuesta)
 
         if respuesta.get("cod") == 200:
+
+            traducciones = {
+                "clear sky": "Cielo despejado",
+                "few clouds": "Algunas nubes",
+                "scattered clouds": "Nubes dispersas",
+                "broken clouds": "Nublado",
+                "rain": "Lluvia"
+            }
+    
+            descripcion = respuesta["weather"][0]["description"]
+            descripcion = traducciones.get(descripcion, descripcion)
+            
+
+
             clima = {
                 "ciudad": respuesta["name"],
                 "temp": round(respuesta["main"]["temp"]),
@@ -27,7 +44,8 @@ def index():
                 "temp_max": math.ceil(respuesta["main"]["temp_max"]),
                 "humidity": respuesta["main"]["humidity"],
                 "wind": round(respuesta["wind"]["speed"]),
-                "desc": respuesta["weather"][0]["description"],
+                #"desc": respuesta["weather"][0]["description"],
+                "desc": descripcion,            
                 "weather_id": respuesta["weather"][0]["id"],
                 "icon": respuesta["weather"][0]["icon"]
             }
