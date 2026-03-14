@@ -22,17 +22,36 @@ def index():
         print(respuesta)
 
         if respuesta.get("cod") == 200:
+            
+            iconos = {
+                "clear sky": "sun.png",
+                "few clouds": "partly_cloudy.png",
+                "scattered clouds": "clouds.png",
+                "broken clouds": "clouds.png",
+                "overcast clouds": "clouds.png",
+                "rain": "rain.png",
+                "moderate rain": "rain.png",
+                "light rain": "rain.png",
+                "snow": "snow.png",
+                "thunderstorm": "thunderstorm.png",
+                "wind": "wind.png"
+            }
 
             traducciones = {
                 "clear sky": "Cielo despejado",
                 "few clouds": "Algunas nubes",
                 "scattered clouds": "Nubes dispersas",
-                "broken clouds": "Nublado",
-                "rain": "Lluvia"
+                "broken clouds": "Muy nublado",
+                "overcast clouds": "Totalmente nublado",
+                "rain": "Lluvia",
+                "moderate rain": "Lluvia moderada",
+                "light rain": "Lluvia ligera"             
             }
     
             descripcion = respuesta["weather"][0]["description"]
+            icono = iconos.get(descripcion, "snow.png")            
             descripcion = traducciones.get(descripcion, descripcion)
+            
             
 
 
@@ -47,7 +66,8 @@ def index():
                 #"desc": respuesta["weather"][0]["description"],
                 "desc": descripcion,            
                 "weather_id": respuesta["weather"][0]["id"],
-                "icon": respuesta["weather"][0]["icon"]
+                "icono": icono
+                #"icon": respuesta["weather"][0]["icon"]
             }
 
     return render_template("index.html", clima=clima)
